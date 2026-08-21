@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ប្រព័ន្ធគ្រប់គ្រង និងវិភាគស្ថិតិសេដ្ឋកិច្ច ខេត្តកោះកុង (Koh Kong Economic Dashboard 2021-2030)</title>
+    <title>ប្រព័ន្ធទិន្នន័យសេដ្ឋកិច្ច-សង្គមកិច្ច ខេត្តកោះកុង (Koh Kong Social/Economic Dashboard 2021-2030)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -78,11 +78,11 @@
             background: rgba(14, 116, 144, 0.8);
         }
 
-        /* Smooth Tab Slide & Fade Animation */
         .tab-content {
+            display: none;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(10px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .tab-content.active-tab {
             display: block !important;
@@ -90,46 +90,17 @@
             transform: translateY(0);
         }
 
-        /* Glowing card animation effect */
         .glow-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .glow-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px -6px rgba(14, 116, 144, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(14, 116, 144, 0.2);
         }
         
-        /* Shimmer background gradient effect */
         .bg-shimmer {
             background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
             background-size: 200% 100%;
-        }
-
-        /* Custom Dynamic Header Title Fly In/Out & Glow Animation */
-        @keyframes flyInOutTitle {
-            0% {
-                opacity: 0;
-                transform: translateY(-24px) scale(0.92);
-                filter: blur(8px);
-            }
-            20% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0px);
-            }
-            85% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .animate-title-fly {
-            animation: flyInOutTitle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .title-gradient-glow {
@@ -140,33 +111,11 @@
             animation: textGradient 6s ease infinite;
         }
 
-        /* Auto Pulse Indicator for Charts */
-        .live-chart-badge {
-            animation: pulse 2s infinite;
-        }
-
-        /* Animated Table Rows with Staggered Entrance */
-        @keyframes tableRowEntrance {
-            0% {
-                opacity: 0;
-                transform: translateY(12px) scale(0.98);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .animate-table-row {
-            animation: tableRowEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
         .table-row-hover {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.2s ease;
         }
         .table-row-hover:hover {
             background-color: rgba(14, 116, 144, 0.08) !important;
-            transform: translateX(4px) scale(1.002);
         }
     </style>
 </head>
@@ -174,10 +123,9 @@
 
     <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Top Branding & Tools Bar -->
             <div class="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-700/50">
                 
-                <!-- Brand / Logo with Redesigned Animated Dynamic Title -->
+                <!-- Brand / Logo Title -->
                 <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" onclick="switchTab('home')">
                     <div class="relative flex-shrink-0">
                         <img src="https://placehold.co/100x100/0e7490/ffffff?text=Koh+Kong" alt="Koh Kong Logo" class="w-11 h-11 rounded-2xl object-cover shadow-lg border-2 border-cyan-500/40 transform group-hover:scale-105 transition duration-300">
@@ -187,67 +135,83 @@
                         </span>
                     </div>
 
-                    <!-- Redesigned Animated Dynamic Title (Fly-In Effect & Gradient Glow) -->
                     <div class="overflow-hidden py-1">
-                        <h1 class="text-base sm:text-lg md:text-xl font-black leading-tight tracking-tight animate-title-fly title-gradient-glow drop-shadow-sm">
-                            ប្រព័ន្ធគ្រប់គ្រង និងវិភាគស្ថិតិសេដ្ឋកិច្ច ខេត្តកោះកុង
+                        <h1 class="text-base sm:text-lg md:text-xl font-black leading-tight tracking-tight title-gradient-glow drop-shadow-sm">
+                            ប្រព័ន្ធទិន្នន័យសេដ្ឋកិច្ច-សង្គមកិច្ច ខេត្តកោះកុង
                         </h1>
                         <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold flex items-center space-x-1.5 space-x-reverse mt-0.5">
                             <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Koh Kong Economic Statistics & Projections (២០២១ - ២០៣០)</span>
+                            <span>Koh Kong Socila/Economic Dashboard (២០២១ - ២០៣០)</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Right Side Controls: Theme Switcher & Year Badge -->
+                <!-- Right Side Interactive Controls: Year Select, Currency Toggle & Dark Mode -->
                 <div class="flex items-center space-x-2 space-x-reverse">
-                    <div class="hidden sm:flex items-center bg-cyan-50 dark:bg-cyan-950/80 px-3 py-1.5 rounded-xl border border-cyan-200/60 dark:border-cyan-800">
-                        <i class="fa-solid fa-calendar-days text-cyan-600 dark:text-cyan-400 mr-2 text-xs"></i>
-                        <span class="text-xs font-bold text-cyan-700 dark:text-cyan-300">២០២១ - ២០៣០</span>
+                    <!-- Interactive Year Selector -->
+                    <div class="flex items-center bg-cyan-50 dark:bg-cyan-950/80 px-2.5 py-1 rounded-xl border border-cyan-200/60 dark:border-cyan-800">
+                        <i class="fa-solid fa-calendar-days text-cyan-600 dark:text-cyan-400 mr-1.5 text-xs"></i>
+                        <select id="selectedYearSelect" onchange="handleYearChange(this.value)" class="bg-transparent text-xs font-bold text-cyan-700 dark:text-cyan-300 focus:outline-none cursor-pointer">
+                            <option value="2030" selected>ឆ្នាំ ២០៣០ (គោលដៅ)</option>
+                            <option value="2029">ឆ្នាំ ២០២៩</option>
+                            <option value="2028">ឆ្នាំ ២០២៨</option>
+                            <option value="2027">ឆ្នាំ ២០២៧</option>
+                            <option value="2026">ឆ្នាំ ២០២៦</option>
+                            <option value="2025">ឆ្នាំ ២០២៥</option>
+                            <option value="2024">ឆ្នាំ ២០២៤</option>
+                            <option value="2023">ឆ្នាំ ២០២៣</option>
+                            <option value="2022">ឆ្នាំ ២០២២</option>
+                            <option value="2021">ឆ្នាំ ២០២១</option>
+                        </select>
                     </div>
 
+                    <!-- Currency Toggle (KHR / USD) -->
+                    <button id="currencyToggleBtn" onclick="toggleCurrency()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 transition flex items-center space-x-1 space-x-reverse" title="ប្តូររូបិយវត្ថុ KHR / USD">
+                        <i class="fa-solid fa-coins text-amber-500"></i>
+                        <span id="currencyLabel">USD ($)</span>
+                    </button>
+
                     <!-- Theme Switcher -->
-                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="ប្តូរ Dark/Light Mode">
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="ប្តូរ Dark/Light Mode">
                         <i id="themeIcon" class="fa-solid fa-moon"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Sequential Top Navigation Bar -->
             <nav class="py-2.5 overflow-x-auto custom-scrollbar flex items-center space-x-1.5 space-x-reverse min-w-full">
-                <button onclick="switchTab('home')" id="nav-btn-home" class="top-nav-btn active px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all bg-cyan-700 text-white shadow-md whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('home')" id="nav-btn-home" class="top-nav-btn active px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all bg-cyan-700 text-white shadow-md whitespace-nowrap">
                     <i class="fa-solid fa-house"></i>
                     <span>១. ទំព័រដើម</span>
                 </button>
-                <button onclick="switchTab('provincial-economy')" id="nav-btn-provincial-economy" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('provincial-economy')" id="nav-btn-provincial-economy" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-chart-line"></i>
                     <span>២. សេដ្ឋកិច្ចខេត្ត</span>
                 </button>
-                <button onclick="switchTab('sectors')" id="nav-btn-sectors" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('sectors')" id="nav-btn-sectors" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-sitemap"></i>
                     <span>៣. វិស័យ</span>
                 </button>
-                <button onclick="switchTab('subsectors')" id="nav-btn-subsectors" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('subsectors')" id="nav-btn-subsectors" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-layer-group"></i>
                     <span>៤. អនុវិស័យ</span>
                 </button>
-                <button onclick="switchTab('proportions')" id="nav-btn-proportions" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('proportions')" id="nav-btn-proportions" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span>៥. សមាមាត្រា</span>
                 </button>
-                <button onclick="switchTab('inflation')" id="nav-btn-inflation" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('inflation')" id="nav-btn-inflation" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-arrow-trend-up"></i>
                     <span>៦. អតិផរណាសេដ្ឋកិច្ច</span>
                 </button>
-                <button onclick="switchTab('population')" id="nav-btn-population" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('population')" id="nav-btn-population" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-users"></i>
                     <span>៧. ចំនួនប្រជាជន</span>
                 </button>
-                <button onclick="switchTab('poverty')" id="nav-btn-poverty" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('poverty')" id="nav-btn-poverty" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                     <span>៨. អត្រាភាពក្រីក្រ</span>
                 </button>
-                <button onclick="switchTab('contact')" id="nav-btn-contact" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap transform hover:scale-105">
+                <button onclick="switchTab('contact')" id="nav-btn-contact" class="top-nav-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse transition-all text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-700/60 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 whitespace-nowrap">
                     <i class="fa-solid fa-address-book"></i>
                     <span>៩. ទំនាក់ទំនង</span>
                 </button>
@@ -257,73 +221,72 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-        <!-- Animated Key Metrics Summary Cards (Updated to 2030 Forecast Target) -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <!-- Card 1: Nominal GDP 2030 Forecast -->
+            <!-- Card 1: Nominal GDP -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-700 glow-card relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">GDP ព្យាករណ៍ (២០៣០)</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">GDP សរុប (<span id="card-year-label-1">២០៣០</span>)</span>
                     <span class="w-9 h-9 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center animate-float">
                         <i class="fa-solid fa-chart-line text-sm"></i>
                     </span>
                 </div>
                 <div class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                    <span id="card-metric-gdp" data-target="2689800">0</span> <span class="text-xs font-semibold text-slate-500">លានរៀល</span>
+                    <span id="card-metric-gdp">--</span>
                 </div>
                 <div class="mt-2 flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400">
                     <i class="fa-solid fa-arrow-up mr-1 text-xs animate-bounce"></i>
-                    <span>$670.4 លានដុល្លារ (ព្យាករណ៍ 2030)</span>
+                    <span id="card-sub-gdp">កំណើនសេដ្ឋកិច្ច +8.0%</span>
                 </div>
             </div>
 
-            <!-- Card 2: GDP Per Capita 2030 Forecast -->
+            <!-- Card 2: GDP Per Capita -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-700 glow-card relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">ចំណូលម្នាក់ៗ (២០៣០)</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">ចំណូលម្នាក់ៗ (<span id="card-year-label-2">២០៣០</span>)</span>
                     <span class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-float">
                         <i class="fa-solid fa-user-gear text-sm"></i>
                     </span>
                 </div>
                 <div class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                    $<span id="card-metric-capita" data-target="3720">0</span> <span class="text-xs font-semibold text-slate-500">/ ឆ្នាំ</span>
+                    <span id="card-metric-capita">--</span>
                 </div>
                 <div class="mt-2 flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400">
                     <i class="fa-solid fa-arrow-up mr-1 text-xs animate-bounce"></i>
-                    <span>14,924 ពាន់រៀល (+8.0% កំណើន)</span>
+                    <span id="card-sub-capita">14,924 ពាន់រៀល / ឆ្នាំ</span>
                 </div>
             </div>
 
-            <!-- Card 3: Inflation Rate 2030 -->
+            <!-- Card 3: Inflation Rate -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-700 glow-card relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">អតិផរណា (២០៣០)</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">អតិផរណា (<span id="card-year-label-3">២០៣០</span>)</span>
                     <span class="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center animate-float">
                         <i class="fa-solid fa-arrow-trend-up text-sm"></i>
                     </span>
                 </div>
                 <div class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                    <span id="card-metric-inflation" data-target="2.4" data-decimals="1">0</span>% <span class="text-xs font-normal text-slate-500">(ស្ថិរភាព)</span>
+                    <span id="card-metric-inflation">2.4%</span>
                 </div>
                 <div class="mt-2 flex items-center text-xs font-medium text-slate-500 dark:text-slate-400">
                     <i class="fa-solid fa-shield-halved mr-1 text-amber-500"></i>
-                    <span>គ្រប់គ្រងបានល្អក្រោម ២.៥%</span>
+                    <span>គ្រប់គ្រងក្នុងកម្រិតល្អ</span>
                 </div>
             </div>
 
-            <!-- Card 4: Poverty Rate 2030 Forecast -->
+            <!-- Card 4: Poverty Rate -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-700 glow-card relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">អត្រាភាពក្រីក្រ (២០៣០)</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">អត្រាភាពក្រីក្រ (<span id="card-year-label-4">២០៣០</span>)</span>
                     <span class="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center animate-float">
                         <i class="fa-solid fa-hand-holding-heart text-sm"></i>
                     </span>
                 </div>
                 <div class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                    <span id="card-metric-poverty" data-target="4.8" data-decimals="1">0</span>%
+                    <span id="card-metric-poverty">4.8%</span>
                 </div>
                 <div class="mt-2 flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400">
                     <i class="fa-solid fa-arrow-down mr-1 text-xs"></i>
-                    <span>កាត់បន្ថយមកត្រឹម ៤.៨%</span>
+                    <span>កាត់បន្ថយជាបន្តបន្ទាប់</span>
                 </div>
             </div>
         </section>
@@ -338,7 +301,7 @@
                             <i class="fa-solid fa-landmark mr-1"></i> ស្ថិតិ និងព្យាករណ៍ផ្លូវការ ខេត្តកោះកុង (២០២១ - ២០៣០)
                         </span>
                         <h2 class="text-xl md:text-2xl font-bold text-white leading-snug">
-                            ប្រព័ន្ធគ្រប់គ្រង និងវិភាគស្ថិតិសេដ្ឋកិច្ច ខេត្តកោះកុង
+                            ប្រព័ន្ធទិន្នន័យសេដ្ឋកិច្ច-សង្គមកិច្ច ខេត្តកោះកុង
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-300 max-w-3xl font-light">
                             ទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាព និងព្យាករណ៍ដល់ឆ្នាំ២០៣០ ដោយរួមបញ្ចូលទាំងរូបិយវត្ថុរៀល និងដុល្លារអាមេរិក ($ USD) ជាមួយនឹងចលនាក្រាហ្វិកអូតូម៉ាទិក ដើម្បីផ្តល់ភាពងាយស្រួលក្នុងការវិភាគ និងទាញយកព័ត៌មាន។
@@ -355,55 +318,57 @@
             <!-- Overview Charts Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
-                    <div class="mb-3">
+                    <div class="mb-3 flex items-center justify-between">
                         <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center">
                             <span>និន្នាការ GDP ខេត្តកោះកុង (២០២១ - ២០៣០)</span>
                             <span class="ml-2 w-2 h-2 rounded-full bg-cyan-500 animate-ping"></span>
                         </h3>
-                        <p class="text-xs text-slate-500">ទិន្នន័យជាក់ស្តែង និងព្យាករណ៍ (លានរៀល / USD)</p>
                     </div>
-                    <div class="relative h-64">
+                    <div class="relative h-64 w-full">
                         <canvas id="homeGdpChart"></canvas>
                     </div>
                 </div>
 
                 <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
-                    <div class="mb-3">
+                    <div class="mb-3 flex items-center justify-between">
                         <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center">
-                            <span>សមាមាត្រវិស័យធំៗទាំង៣ (២០៣០)</span>
+                            <span>សមាមាត្រវិស័យធំៗទាំង៣</span>
                             <span class="ml-2 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                         </h3>
                     </div>
-                    <div class="relative h-64">
+                    <div class="relative h-64 w-full">
                         <canvas id="homeSectorDonutChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-provincial-economy" class="tab-content hidden space-y-6">
+        <div id="tab-content-provincial-economy" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
                         ទំហំសេដ្ឋកិច្ច GDP ថ្លៃបច្ចុប្បន្ន vs ថ្លៃថេរ ២០១៤ (២០២១ - ២០៣០)
                     </h3>
-                    <p class="text-xs text-slate-500">គិតជា លានរៀល និង ដុល្លារ ($ USD)</p>
+                    <p class="text-xs text-slate-500">ប្រៀបធៀប GDP Nominal និង Real GDP</p>
                 </div>
-                <div class="relative h-72">
+                <div class="relative h-72 w-full">
                     <canvas id="provincialGdpChart"></canvas>
                 </div>
             </div>
 
-            <!-- Table Summary for Provincial Economy (2021 - 2030 Data) -->
+            <!-- Table Summary for Provincial Economy -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card overflow-hidden">
-                <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center justify-between">
-                    <span><i class="fa-solid fa-table mr-2 text-cyan-600"></i>តារាងសង្ខេប និងព្យាករណ៍ GDP ថ្លៃបច្ចុប្បន្ន និងថ្លៃថេរ (២០២១ - ២០៣០)</span>
-                    <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-200 dark:border-emerald-800 flex items-center">
-                        <i class="fa-solid fa-sparkles mr-1 animate-spin"></i> ទិន្នន័យមានចលនា
-                    </span>
-                </h3>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-table mr-2 text-cyan-600"></i>តារាងសង្ខេប និងព្យាករណ៍ GDP (២០២១ - ២០៣០)
+                    </h3>
+                    <button onclick="exportTableToCSV('koh_kong_economic_data.csv')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center space-x-1 space-x-reverse self-start sm:self-auto">
+                        <i class="fa-solid fa-file-csv"></i>
+                        <span>ទាញយកទិន្នន័យ (CSV)</span>
+                    </button>
+                </div>
                 <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-xs text-left text-slate-600 dark:text-slate-300">
+                    <table id="gdpDataTable" class="w-full text-xs text-left text-slate-600 dark:text-slate-300">
                         <thead class="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 font-bold">
                             <tr>
                                 <th class="p-3 rounded-l-lg">ឆ្នាំ</th>
@@ -414,88 +379,8 @@
                                 <th class="p-3 rounded-r-lg">កំណើន Nominal (%)</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700/60 font-medium">
-                            <tr class="table-row-hover">
-                                <td class="p-3 font-bold">២០២១</td>
-                                <td class="p-3">1,422,089 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$354.5 លាន</td>
-                                <td class="p-3">1,210,500 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$301.7 លាន</td>
-                                <td class="p-3 text-emerald-600">+4.8%</td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="p-3 font-bold">២០២២</td>
-                                <td class="p-3">1,527,533 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$380.7 លាន</td>
-                                <td class="p-3">1,272,236 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$317.1 លាន</td>
-                                <td class="p-3 text-emerald-600">+7.4%</td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="p-3 font-bold">២០២៣</td>
-                                <td class="p-3">1,660,140 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$413.8 លាន</td>
-                                <td class="p-3">1,342,209 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$334.5 លាន</td>
-                                <td class="p-3 text-emerald-600">+8.7%</td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="p-3 font-bold">២០២៤</td>
-                                <td class="p-3">1,789,538 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$446.0 លាន</td>
-                                <td class="p-3">1,412,004 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$352.0 លាន</td>
-                                <td class="p-3 text-emerald-600">+7.8%</td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="p-3 font-bold">២០២៥</td>
-                                <td class="p-3">1,891,447 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$471.4 លាន</td>
-                                <td class="p-3">1,478,368 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$368.5 លាន</td>
-                                <td class="p-3 text-emerald-600">+5.7%</td>
-                            </tr>
-                            <!-- Extended Forecast 2026 - 2030 -->
-                            <tr class="table-row-hover bg-cyan-50/30 dark:bg-cyan-950/20">
-                                <td class="p-3 font-bold text-amber-600 dark:text-amber-400">២០២៦ (ព្យាករណ៍)</td>
-                                <td class="p-3">2,014,390 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$502.1 លាន</td>
-                                <td class="p-3">1,556,720 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$388.0 លាន</td>
-                                <td class="p-3 text-emerald-600">+6.5%</td>
-                            </tr>
-                            <tr class="table-row-hover bg-cyan-50/30 dark:bg-cyan-950/20">
-                                <td class="p-3 font-bold text-amber-600 dark:text-amber-400">២០២៧ (ព្យាករណ៍)</td>
-                                <td class="p-3">2,155,398 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$537.2 លាន</td>
-                                <td class="p-3">1,642,340 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$409.3 លាន</td>
-                                <td class="p-3 text-emerald-600">+7.0%</td>
-                            </tr>
-                            <tr class="table-row-hover bg-cyan-50/30 dark:bg-cyan-950/20">
-                                <td class="p-3 font-bold text-amber-600 dark:text-amber-400">២០២៨ (ព្យាករណ៍)</td>
-                                <td class="p-3">2,317,052 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$577.5 លាន</td>
-                                <td class="p-3">1,734,310 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$432.2 លាន</td>
-                                <td class="p-3 text-emerald-600">+7.5%</td>
-                            </tr>
-                            <tr class="table-row-hover bg-cyan-50/30 dark:bg-cyan-950/20">
-                                <td class="p-3 font-bold text-amber-600 dark:text-amber-400">២០២៩ (ព្យាករណ៍)</td>
-                                <td class="p-3">2,490,830 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$620.8 លាន</td>
-                                <td class="p-3">1,833,160 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$456.9 លាន</td>
-                                <td class="p-3 text-emerald-600">+7.5%</td>
-                            </tr>
-                            <tr class="table-row-hover bg-cyan-100/40 dark:bg-cyan-900/40">
-                                <td class="p-3 font-bold text-cyan-700 dark:text-cyan-300">២០៣០ (គោលដៅ)</td>
-                                <td class="p-3 font-bold">2,689,800 លាន</td>
-                                <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$670.4 លាន</td>
-                                <td class="p-3 font-bold">1,941,320 លាន</td>
-                                <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$483.8 លាន</td>
-                                <td class="p-3 text-emerald-600 font-bold">+8.0%</td>
-                            </tr>
+                        <tbody id="gdpTableBody" class="divide-y divide-slate-100 dark:divide-slate-700/60 font-medium">
+                            <!-- Populated via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -508,7 +393,7 @@
                             អត្រាកំណើនសេដ្ឋកិច្ច (%) (២០២១ - ២០៣០)
                         </h3>
                     </div>
-                    <div class="relative h-64">
+                    <div class="relative h-64 w-full">
                         <canvas id="provincialGrowthChart"></canvas>
                     </div>
                 </div>
@@ -516,39 +401,38 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                     <div class="mb-3">
                         <h3 class="text-base font-bold text-slate-900 dark:text-white">
-                            ចំណូលម្នាក់ៗ (Per Capita USD) (២០២១ - ២០៣០)
+                            ចំណូលម្នាក់ៗ (Per Capita) (២០២១ - ២០៣០)
                         </h3>
                     </div>
-                    <div class="relative h-64">
+                    <div class="relative h-64 w-full">
                         <canvas id="provincialPerCapitaChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-sectors" class="tab-content hidden space-y-6">
+        <div id="tab-content-sectors" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
                         ការបែងចែក និងប្រៀបធៀបវិស័យធំៗទាំង៣ (២០២១ - ២០៣០)
                     </h3>
-                    <p class="text-xs text-slate-500">តម្លៃគិតជា លានរៀល និង ដុល្លារ ($ USD)</p>
+                    <p class="text-xs text-slate-500">កសិកម្ម ឧស្សាហកម្ម និង សេវាកម្ម</p>
                 </div>
-                <div class="relative h-80">
+                <div class="relative h-80 w-full">
                     <canvas id="mainSectorsBarChart"></canvas>
                 </div>
             </div>
 
-            <!-- Sector Summary Cards for 2030 Projections -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-4 glow-card">
                     <div class="flex items-center space-x-2 space-x-reverse mb-2">
                         <i class="fa-solid fa-wheat-awn text-emerald-600 dark:text-emerald-400 text-lg animate-bounce"></i>
-                        <h4 class="font-bold text-emerald-900 dark:text-emerald-200">១. វិស័យកសិកម្ម (២០៣០)</h4>
+                        <h4 class="font-bold text-emerald-900 dark:text-emerald-200">១. វិស័យកសិកម្ម</h4>
                     </div>
-                    <p class="text-2xl font-black text-emerald-700 dark:text-emerald-300">537,960 លានរៀល</p>
+                    <p id="sector-val-agri" class="text-2xl font-black text-emerald-700 dark:text-emerald-300">537,960 លានរៀល</p>
                     <div class="mt-1 flex items-center justify-between">
-                        <span class="text-xs font-bold text-emerald-800 dark:text-emerald-200 bg-emerald-200/60 dark:bg-emerald-900/60 px-2.5 py-1 rounded-lg">
+                        <span id="sector-usd-agri" class="text-xs font-bold text-emerald-800 dark:text-emerald-200 bg-emerald-200/60 dark:bg-emerald-900/60 px-2.5 py-1 rounded-lg">
                             $134.1 លានដុល្លារ
                         </span>
                         <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">២០.០% នៃ GDP</span>
@@ -558,11 +442,11 @@
                 <div class="bg-sky-50/70 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 rounded-2xl p-4 glow-card">
                     <div class="flex items-center space-x-2 space-x-reverse mb-2">
                         <i class="fa-solid fa-industry text-sky-600 dark:text-sky-400 text-lg animate-bounce"></i>
-                        <h4 class="font-bold text-sky-900 dark:text-sky-200">២. វិស័យឧស្សាហកម្ម (២០៣០)</h4>
+                        <h4 class="font-bold text-sky-900 dark:text-sky-200">២. វិស័យឧស្សាហកម្ម</h4>
                     </div>
-                    <p class="text-2xl font-black text-sky-700 dark:text-sky-300">1,022,124 លានរៀល</p>
+                    <p id="sector-val-ind" class="text-2xl font-black text-sky-700 dark:text-sky-300">1,022,124 លានរៀល</p>
                     <div class="mt-1 flex items-center justify-between">
-                        <span class="text-xs font-bold text-sky-800 dark:text-sky-200 bg-sky-200/60 dark:bg-sky-900/60 px-2.5 py-1 rounded-lg">
+                        <span id="sector-usd-ind" class="text-xs font-bold text-sky-800 dark:text-sky-200 bg-sky-200/60 dark:bg-sky-900/60 px-2.5 py-1 rounded-lg">
                             $254.8 លានដុល្លារ
                         </span>
                         <span class="text-xs text-sky-600 dark:text-sky-400 font-semibold">៣៨.០% នៃ GDP</span>
@@ -572,11 +456,11 @@
                 <div class="bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 glow-card">
                     <div class="flex items-center space-x-2 space-x-reverse mb-2">
                         <i class="fa-solid fa-handshake text-amber-600 dark:text-amber-400 text-lg animate-bounce"></i>
-                        <h4 class="font-bold text-amber-900 dark:text-amber-200">៣. វិស័យសេវាកម្ម (២០៣០)</h4>
+                        <h4 class="font-bold text-amber-900 dark:text-amber-200">៣. វិស័យសេវាកម្ម</h4>
                     </div>
-                    <p class="text-2xl font-black text-amber-700 dark:text-amber-300">1,129,716 លានរៀល</p>
+                    <p id="sector-val-serv" class="text-2xl font-black text-amber-700 dark:text-amber-300">1,129,716 លានរៀល</p>
                     <div class="mt-1 flex items-center justify-between">
-                        <span class="text-xs font-bold text-amber-800 dark:text-amber-200 bg-amber-200/60 dark:bg-amber-900/60 px-2.5 py-1 rounded-lg">
+                        <span id="sector-usd-serv" class="text-xs font-bold text-amber-800 dark:text-amber-200 bg-amber-200/60 dark:bg-amber-900/60 px-2.5 py-1 rounded-lg">
                             $281.6 លានដុល្លារ
                         </span>
                         <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold">៤២.០% នៃ GDP</span>
@@ -585,32 +469,29 @@
             </div>
         </div>
 
-        <div id="tab-content-subsectors" class="tab-content hidden space-y-6">
+        <div id="tab-content-subsectors" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
                         តម្លៃបន្ថែមតាមបណ្តាអនុវិស័យចម្បង (ព្យាករណ៍ឆ្នាំ២០៣០)
                     </h3>
-                    <p class="text-xs text-slate-500">បង្ហាញជា លានរៀល និង ដុល្លារ ($ USD)</p>
                 </div>
-                <div class="relative h-80">
+                <div class="relative h-80 w-full">
                     <canvas id="subSectorsChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-proportions" class="tab-content hidden space-y-6">
+        <div id="tab-content-proportions" class="tab-content space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card flex flex-col justify-between">
-                    <div>
-                        <div class="mb-3">
-                            <h3 class="text-base font-bold text-slate-900 dark:text-white">
-                                រចនាសម្ព័ន្ធសមាមាត្រវិស័យឆ្នាំ២០៣០ (%)
-                            </h3>
-                        </div>
-                        <div class="relative h-64">
-                            <canvas id="proportionsDonutChart"></canvas>
-                        </div>
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
+                    <div class="mb-3">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                            រចនាសម្ព័ន្ធសមាមាត្រវិស័យ (%)
+                        </h3>
+                    </div>
+                    <div class="relative h-64 w-full">
+                        <canvas id="proportionsDonutChart"></canvas>
                     </div>
                 </div>
 
@@ -620,14 +501,14 @@
                             ការផ្លាស់ប្តូរសមាមាត្រវិស័យ (២០២១ - ២០៣០)
                         </h3>
                     </div>
-                    <div class="relative h-64">
+                    <div class="relative h-64 w-full">
                         <canvas id="proportionsTrendChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-inflation" class="tab-content hidden space-y-6">
+        <div id="tab-content-inflation" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
@@ -635,13 +516,13 @@
                     </h3>
                     <p class="text-xs text-slate-500">គិតជាភាគរយ (%)</p>
                 </div>
-                <div class="relative h-72">
+                <div class="relative h-72 w-full">
                     <canvas id="inflationChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-population" class="tab-content hidden space-y-6">
+        <div id="tab-content-population" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
@@ -649,13 +530,13 @@
                     </h3>
                     <p class="text-xs text-slate-500">គិតជាចំនួននាក់</p>
                 </div>
-                <div class="relative h-72">
+                <div class="relative h-72 w-full">
                     <canvas id="populationChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-poverty" class="tab-content hidden space-y-6">
+        <div id="tab-content-poverty" class="tab-content space-y-6">
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                 <div class="mb-4">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">
@@ -663,13 +544,13 @@
                     </h3>
                     <p class="text-xs text-slate-500">ភាគរយនៃគ្រួសារក្រីក្រ (IDPoor %)</p>
                 </div>
-                <div class="relative h-72">
+                <div class="relative h-72 w-full">
                     <canvas id="povertyChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <div id="tab-content-contact" class="tab-content hidden space-y-6">
+        <div id="tab-content-contact" class="tab-content space-y-6">
             <div class="bg-gradient-to-r from-slate-900 via-cyan-900 to-slate-900 text-white rounded-2xl p-6 shadow-md border border-cyan-800/40">
                 <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     <div class="space-y-2">
@@ -677,18 +558,19 @@
                             <i class="fa-solid fa-headset mr-1"></i> ទំនាក់ទំនង និងស្នើសុំទិន្នន័យ
                         </span>
                         <h2 class="text-xl md:text-2xl font-bold text-white leading-snug">
-                            មន្ទីរផែនការ និងរដ្ឋបាលខេត្តកោះកុង
+                            មន្ទីរផែនការខេត្តកោះកុង
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-light">
-                            ប្រសិនបើលោកអ្នកមានចម្ងល់ តម្រូវការទិន្នន័យបន្ថែម ឬការផ្តល់មតិស្ថាបនាលើរបាយការណ៍ស្ថិតិសេដ្ឋកិច្ច សូមទំនាក់ទំនងមកកាន់ក្រុមការងារតាមរយៈព័ត៌មានខាងក្រោម ឬបំពេញទម្រង់ផ្ញើសារ។
+                            ប្រសិនបើលោកអ្នកមានចម្ងល់ តម្រូវការទិន្នន័យបន្ថែម ឬការផ្តល់មតិស្ថាបនាលើរបាយការណ៍ស្ថិតិសេដ្ឋកិច្ច សូមទំនាក់ទំនងមកកាន់ក្រុមការងារតាមរយៈព័ត៌មានខាងក្រោម។
+                        </p>
+                        <p class="text-xs text-cyan-300 font-semibold pt-1">
+                            Designed & Developed by: Mr. Hour Ngy 
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Information & Form Layout -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Contact Info Cards -->
                 <div class="space-y-4">
                     <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 shadow-sm flex items-start space-x-4 space-x-reverse glow-card">
                         <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 flex items-center justify-center flex-shrink-0 text-lg">
@@ -697,7 +579,7 @@
                         <div>
                             <h4 class="text-sm font-bold text-slate-900 dark:text-white">អាសយដ្ឋានផ្លូវការ</h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                                ផ្លូវជាតិលេខ ៤៨, ភូមិ៣, សង្កាត់ស្មាច់មានជ័យ, ក្រុងខេមរភូមិន្ទ, ខេត្តកោះកុង, ព្រះរាជាណាចក្រកម្ពុជា
+                                ផ្លូវជាតិលេខ ៤៨, ភូមិ៣, សង្កាត់ស្មាច់មានជ័យ, ក្រុងខេមរភូមិន្ទ, ខេត្តកោះកុង
                             </p>
                         </div>
                     </div>
@@ -709,9 +591,8 @@
                         <div>
                             <h4 class="text-sm font-bold text-slate-900 dark:text-white">លេខទូរស័ព្ទទំនាក់ទំនង</h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-                                (+855) 35 955 888 / (+855) 12 800 900
+                                (+៨៥៥) ១២ ៣៩០ ២៦២ / (+៨៥៥) ៧០ ៣៩៣ ១៧១
                             </p>
-                            <p class="text-[11px] text-slate-400 mt-0.5">រៀងរាល់ម៉ោងធ្វើការ (ច័ន្ទ - សុក្រ)</p>
                         </div>
                     </div>
 
@@ -722,13 +603,12 @@
                         <div>
                             <h4 class="text-sm font-bold text-slate-900 dark:text-white">អ៊ីមែលផ្លូវការ</h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-                                info@kohkong.gov.kh / stat@kohkong.gov.kh
+                                hourngy@gmail.com
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Interactive Form -->
                 <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700 shadow-sm glow-card">
                     <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">
                         ទម្រង់ផ្ញើសារ ឬស្នើសុំទិន្នន័យសេដ្ឋកិច្ច
@@ -743,23 +623,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">លេខទូរស័ព្ទ *</label>
-                                <input type="tel" required placeholder="ឧ. 012 345 678" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">អាសយដ្ឋានអ៊ីមែល</label>
-                                <input type="email" placeholder="example@domain.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">ប្រធានបទ / ស្នើសុំ</label>
-                                <select class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                    <option value="data">ស្នើសុំទិន្នន័យស្ថិតិបន្ថែម</option>
-                                    <option value="inquiry">សាកសួរព័ត៌មានទូទៅ</option>
-                                    <option value="feedback">ផ្តល់មតិស្ថាបនា</option>
-                                    <option value="other">ផ្សេងៗ</option>
-                                </select>
+                                <input type="tel" required placeholder="ឧ. 012 390 262" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500">
                             </div>
                         </div>
 
@@ -769,7 +633,7 @@
                         </div>
 
                         <div class="flex justify-end">
-                            <button type="submit" class="px-6 py-2.5 bg-cyan-700 hover:bg-cyan-600 text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-cyan-500/20 flex items-center space-x-2 space-x-reverse transform hover:-translate-y-0.5">
+                            <button type="submit" class="px-6 py-2.5 bg-cyan-700 hover:bg-cyan-600 text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-cyan-500/20 flex items-center space-x-2 space-x-reverse">
                                 <i class="fa-solid fa-paper-plane"></i>
                                 <span>ផ្ញើសារ / ស្នើសុំ</span>
                             </button>
@@ -787,8 +651,9 @@
     </div>
 
     <script>
-        // Extended Datasets up to 2030 (2021 - 2030)
         const years = ['២០២១', '២០២២', '២០២៣', '២០២៤', '២០២៥', '២០២៦', '២០២៧', '២០២៨', '២០២៩', '២០៣០'];
+        const yearKeys = [2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
+        
         const nominalGDP = [1422089, 1527533, 1660140, 1789538, 1891447, 2014390, 2155398, 2317052, 2490830, 2689800];
         const realGDP = [1210500, 1272236, 1342209, 1412004, 1478368, 1556720, 1642340, 1734310, 1833160, 1941320];
         const nominalGrowth = [4.8, 7.4, 8.7, 7.8, 5.7, 6.5, 7.0, 7.5, 7.5, 8.0];
@@ -798,23 +663,93 @@
         const populationData = [138200, 140500, 142800, 145100, 147500, 150000, 152600, 155300, 158100, 161000];
         const povertyRates = [17.8, 15.6, 13.5, 11.8, 10.1, 8.8, 7.6, 6.5, 5.6, 4.8];
 
-        // Trigger staggered table row animation
-        function triggerTableAnimations() {
-            const rows = document.querySelectorAll('tbody tr');
-            rows.forEach((row, index) => {
-                row.classList.remove('animate-table-row');
-                void row.offsetWidth; // Force DOM reflow to restart keyframe animation
-                row.style.animationDelay = `${index * 45}ms`;
-                row.classList.add('animate-table-row');
-            });
-        }
+        const agriData = [344179, 364071, 386134, 408744, 429019, 452100, 476800, 502900, 520100, 537960];
+        const indData = [427853, 471988, 536368, 596230, 646219, 715000, 786000, 862000, 940000, 1022124];
+        const servData = [650057, 691474, 737468, 784564, 816209, 847290, 892598, 952152, 1030730, 1129716];
 
-        // Exchange rate standard: 1 USD = 4,012 KHR
+        let activeCurrency = 'USD'; // Default currency display
+        let selectedYear = 2030;
+        const charts = {};
+
         function toUsdMillions(khrMillions) {
             return (khrMillions / 4012).toFixed(1);
         }
 
-        const charts = {};
+        function renderGdpTable() {
+            const tbody = document.getElementById('gdpTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            yearKeys.forEach((yr, idx) => {
+                const khrVal = nominalGDP[idx];
+                const usdVal = toUsdMillions(khrVal);
+                const realKhr = realGDP[idx];
+                const realUsd = toUsdMillions(realKhr);
+                const growth = nominalGrowth[idx];
+                const isSelected = yr === selectedYear;
+
+                const tr = document.createElement('tr');
+                tr.className = `table-row-hover ${isSelected ? 'bg-cyan-100/60 dark:bg-cyan-900/40 font-bold border-l-4 border-cyan-600' : ''}`;
+                tr.innerHTML = `
+                    <td class="p-3 font-bold">${years[idx]} ${yr >= 2026 ? '<span class="text-[10px] text-amber-500 font-normal">(ព្យាករណ៍)</span>' : ''}</td>
+                    <td class="p-3">${khrVal.toLocaleString()} លាន</td>
+                    <td class="p-3 text-cyan-600 dark:text-cyan-400 font-bold">$${usdVal} លាន</td>
+                    <td class="p-3">${realKhr.toLocaleString()} លាន</td>
+                    <td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">$${realUsd} លាន</td>
+                    <td class="p-3 text-emerald-600 font-bold">+${growth}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateMetricCards(yr) {
+            const idx = yearKeys.indexOf(parseInt(yr));
+            if (idx === -1) return;
+
+            selectedYear = parseInt(yr);
+            
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`card-year-label-${i}`);
+                if (el) el.innerText = years[idx];
+            }
+
+            const gdpKhr = nominalGDP[idx];
+            const gdpUsd = toUsdMillions(gdpKhr);
+            const capitaUsd = perCapitaUSD[idx];
+            const capitaKhr = Math.round(capitaUsd * 4.012);
+
+            const gdpEl = document.getElementById('card-metric-gdp');
+            const capitaEl = document.getElementById('card-metric-capita');
+            const inflEl = document.getElementById('card-metric-inflation');
+            const povEl = document.getElementById('card-metric-poverty');
+
+            if (activeCurrency === 'USD') {
+                if (gdpEl) gdpEl.innerText = `$${gdpUsd} លាន`;
+                if (capitaEl) capitaEl.innerText = `$${capitaUsd.toLocaleString()} / ឆ្នាំ`;
+            } else {
+                if (gdpEl) gdpEl.innerText = `${gdpKhr.toLocaleString()} លាន៛`;
+                if (capitaEl) capitaEl.innerText = `${capitaKhr.toLocaleString()} ពាន់៛`;
+            }
+
+            if (inflEl) inflEl.innerText = `${inflationRates[idx]}%`;
+            if (povEl) povEl.innerText = `${povertyRates[idx]}%`;
+
+            const subGdp = document.getElementById('card-sub-gdp');
+            if (subGdp) subGdp.innerText = `កំណើនសេដ្ឋកិច្ច +${nominalGrowth[idx]}%`;
+
+            renderGdpTable();
+        }
+
+        function handleYearChange(val) {
+            updateMetricCards(val);
+        }
+
+        function toggleCurrency() {
+            activeCurrency = activeCurrency === 'USD' ? 'KHR' : 'USD';
+            document.getElementById('currencyLabel').innerText = activeCurrency === 'USD' ? 'USD ($)' : 'KHR (៛)';
+            updateMetricCards(selectedYear);
+            showToast(`បានប្តូរការបង្ហាញទៅជា ${activeCurrency}`);
+        }
 
         function toggleDarkMode() {
             const html = document.documentElement;
@@ -828,65 +763,49 @@
             }
         }
 
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            showToast('សារ ឬសំណើរបស់អ្នកត្រូវបានផ្ញើដោយជោគជ័យ! ក្រុមការងារនឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។');
-            e.target.reset();
-        }
-
         function showToast(msg) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toastMsg');
+            if (!toast || !toastMsg) return;
             toastMsg.innerText = msg;
-            toast.classList.remove('hidden', 'translate-y-2');
-            toast.classList.add('translate-y-0');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-2');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 300);
-            }, 3500);
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
         }
 
-        // Automatic Counting Number Logic
-        function startMetricCounters() {
-            const metricIds = [
-                { id: 'card-metric-gdp', decimals: 0 },
-                { id: 'card-metric-capita', decimals: 0 },
-                { id: 'card-metric-inflation', decimals: 1 },
-                { id: 'card-metric-poverty', decimals: 1 }
-            ];
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('សារ ឬសំណើរបស់អ្នកត្រូវបានផ្ញើដោយជោគជ័យ!');
+            e.target.reset();
+        }
 
-            metricIds.forEach(item => {
-                const el = document.getElementById(item.id);
-                if (!el) return;
-                const target = parseFloat(el.getAttribute('data-target'));
-                const duration = 650;
-                const steps = 30;
-                const stepTime = duration / steps;
-                let current = 0;
-                const increment = target / steps;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    if (item.decimals > 0) {
-                        el.innerText = current.toFixed(item.decimals);
-                    } else {
-                        el.innerText = Math.round(current).toLocaleString();
-                    }
-                }, stepTime);
+        function exportTableToCSV(filename) {
+            let csv = [];
+            csv.push(['Year', 'GDP Nominal (KHR Million)', 'GDP Nominal (USD Million)', 'GDP Real (KHR Million)', 'GDP Real (USD Million)', 'Nominal Growth (%)']);
+            
+            yearKeys.forEach((yr, idx) => {
+                csv.push([
+                    yr,
+                    nominalGDP[idx],
+                    toUsdMillions(nominalGDP[idx]),
+                    realGDP[idx],
+                    toUsdMillions(realGDP[idx]),
+                    nominalGrowth[idx]
+                ]);
             });
+
+            const csvFile = new Blob([csv.join('\n')], { type: 'text/csv' });
+            const downloadLink = document.createElement('a');
+            downloadLink.download = filename;
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
         }
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('active-tab');
-                el.classList.add('hidden');
             });
             
             document.querySelectorAll('.top-nav-btn').forEach(btn => {
@@ -896,10 +815,7 @@
 
             const contentEl = document.getElementById(`tab-content-${tabId}`);
             if (contentEl) {
-                contentEl.classList.remove('hidden');
-                setTimeout(() => {
-                    contentEl.classList.add('active-tab');
-                }, 10);
+                contentEl.classList.add('active-tab');
             }
 
             const activeNavBtn = document.getElementById(`nav-btn-${tabId}`);
@@ -908,71 +824,19 @@
                 activeNavBtn.classList.remove('text-slate-700', 'dark:text-slate-200', 'bg-slate-100/80', 'dark:bg-slate-700/60');
             }
 
+            // Lazy Render Charts when Tab is Displayed
             setTimeout(() => {
-                replayTabCharts(tabId);
-                triggerTableAnimations();
-            }, 30);
+                renderChartsForTab(tabId);
+            }, 50);
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function replayChart(chartKey) {
-            if (charts[chartKey]) {
-                charts[chartKey].stop();
-                charts[chartKey].reset();
-                charts[chartKey].update();
-            }
-        }
-
-        function replayCurrentAnimations() {
-            const activeNavBtn = document.querySelector('.top-nav-btn.active');
-            if (activeNavBtn) {
-                const tabId = activeNavBtn.id.replace('nav-btn-', '');
-                replayTabCharts(tabId);
-                triggerTableAnimations();
-                startMetricCounters();
-            }
-        }
-
-        function replayTabCharts(tabId) {
-            const chartMap = {
-                'home': ['homeGdp', 'homeDonut'],
-                'provincial-economy': ['provGdp', 'provGrowth', 'provPerCapita'],
-                'sectors': ['mainSectors'],
-                'subsectors': ['subSectors'],
-                'proportions': ['propDonut', 'propTrend'],
-                'inflation': ['inflation'],
-                'population': ['population'],
-                'poverty': ['poverty']
-            };
-
-            if (chartMap[tabId]) {
-                chartMap[tabId].forEach(key => {
-                    if (charts[key]) {
-                        charts[key].resize();
-                        replayChart(key);
-                    }
-                });
-            }
-        }
-
-        function initAllCharts() {
+        function renderChartsForTab(tabId) {
             Chart.defaults.font.family = "'Kantumruy Pro', 'Inter', sans-serif";
             Chart.defaults.color = '#64748b';
 
-            // Enhanced dynamic animations for all charts (800ms smooth growth)
-            const dynamicChartAnimation = {
-                duration: 800,
-                easing: 'easeOutQuart',
-                delay: (context) => context.dataIndex * 35
-            };
-
-            const getGradient = (ctx, color1, color2) => {
-                const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, color1);
-                gradient.addColorStop(1, color2);
-                return gradient;
-            };
+            const dynamicAnim = { duration: 600, easing: 'easeOutQuart' };
 
             const khrUsdTooltip = {
                 callbacks: {
@@ -986,221 +850,192 @@
                 }
             };
 
-            // 1. Home GDP Line Chart (2021-2030)
-            const ctxHomeGdp = document.getElementById('homeGdpChart').getContext('2d');
-            const bgGradHomeGdp = getGradient(ctxHomeGdp, 'rgba(14, 116, 144, 0.45)', 'rgba(14, 116, 144, 0.01)');
-            charts.homeGdp = new Chart(ctxHomeGdp, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        label: 'GDP',
-                        data: nominalGDP,
-                        borderColor: '#0e7490',
-                        borderWidth: 3.5,
-                        pointBackgroundColor: '#0e7490',
-                        pointHoverRadius: 9,
-                        backgroundColor: bgGradHomeGdp,
-                        fill: true,
-                        tension: 0.35
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: dynamicChartAnimation,
-                    plugins: { 
-                        legend: { display: false },
-                        tooltip: khrUsdTooltip
-                    }
-                }
-            });
+            if (tabId === 'home') {
+                if (!charts.homeGdp) {
+                    const ctx = document.getElementById('homeGdpChart').getContext('2d');
+                    charts.homeGdp = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [{
+                                label: 'GDP Nominal',
+                                data: nominalGDP,
+                                borderColor: '#0e7490',
+                                borderWidth: 3,
+                                backgroundColor: 'rgba(14, 116, 144, 0.15)',
+                                fill: true,
+                                tension: 0.35
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim, plugins: { tooltip: khrUsdTooltip } }
+                    });
+                } else { charts.homeGdp.resize(); }
 
-            // 1. Home Sector Donut Chart (2030)
-            charts.homeDonut = new Chart(document.getElementById('homeSectorDonutChart').getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['កសិកម្ម ($134.1M)', 'ឧស្សាហកម្ម ($254.8M)', 'សេវាកម្ម ($281.6M)'],
-                    datasets: [{
-                        data: [20.0, 38.0, 42.0],
-                        backgroundColor: ['#10b981', '#0284c7', '#f59e0b'],
-                        borderWidth: 3,
-                        hoverOffset: 14
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: {
-                        animateScale: true,
-                        animateRotate: true,
-                        duration: 800,
-                        easing: 'easeOutQuart'
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ` ${context.label}: ${context.parsed}% នៃ GDP (២០៣០)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+                if (!charts.homeDonut) {
+                    const ctx = document.getElementById('homeSectorDonutChart').getContext('2d');
+                    charts.homeDonut = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['កសិកម្ម (20%)', 'ឧស្សាហកម្ម (38%)', 'សេវាកម្ម (42%)'],
+                            datasets: [{ data: [20.0, 38.0, 42.0], backgroundColor: ['#10b981', '#0284c7', '#f59e0b'] }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.homeDonut.resize(); }
+            }
 
-            // 2. Provincial Economy GDP Chart (2021-2030)
-            const ctxProvGdp = document.getElementById('provincialGdpChart').getContext('2d');
-            const bgGradProvNominal = getGradient(ctxProvGdp, 'rgba(14, 116, 144, 0.35)', 'rgba(14, 116, 144, 0)');
-            charts.provGdp = new Chart(ctxProvGdp, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [
-                        { label: 'GDP ថ្លៃបច្ចុប្បន្ន', data: nominalGDP, borderColor: '#0e7490', borderWidth: 3.5, backgroundColor: bgGradProvNominal, fill: true, tension: 0.35 },
-                        { label: 'GDP ថ្លៃថេរ ២០១៤', data: realGDP, borderColor: '#10b981', borderWidth: 2.5, borderDash: [6,6], tension: 0.35 }
-                    ]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    animation: dynamicChartAnimation,
-                    plugins: { tooltip: khrUsdTooltip }
-                }
-            });
+            if (tabId === 'provincial-economy') {
+                if (!charts.provGdp) {
+                    const ctx = document.getElementById('provincialGdpChart').getContext('2d');
+                    charts.provGdp = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [
+                                { label: 'GDP ថ្លៃបច្ចុប្បន្ន', data: nominalGDP, borderColor: '#0e7490', borderWidth: 3, tension: 0.35 },
+                                { label: 'GDP ថ្លៃថេរ', data: realGDP, borderColor: '#10b981', borderWidth: 2.5, borderDash: [5,5], tension: 0.35 }
+                            ]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim, plugins: { tooltip: khrUsdTooltip } }
+                    });
+                } else { charts.provGdp.resize(); }
 
-            // 2. Growth Rates (2021-2030)
-            charts.provGrowth = new Chart(document.getElementById('provincialGrowthChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: years,
-                    datasets: [
-                        { label: 'កំណើន Nominal (%)', data: nominalGrowth, backgroundColor: '#0e7490', borderRadius: 6 },
-                        { label: 'កំណើន Real (%)', data: realGrowth, backgroundColor: '#f59e0b', borderRadius: 6 }
-                    ]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+                if (!charts.provGrowth) {
+                    const ctx = document.getElementById('provincialGrowthChart').getContext('2d');
+                    charts.provGrowth = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: years,
+                            datasets: [
+                                { label: 'កំណើន Nominal (%)', data: nominalGrowth, backgroundColor: '#0e7490', borderRadius: 5 },
+                                { label: 'កំណើន Real (%)', data: realGrowth, backgroundColor: '#f59e0b', borderRadius: 5 }
+                            ]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.provGrowth.resize(); }
 
-            // 2. Per Capita Chart (2021-2030)
-            const ctxCapita = document.getElementById('provincialPerCapitaChart').getContext('2d');
-            const bgCapita = getGradient(ctxCapita, 'rgba(16, 185, 129, 0.35)', 'rgba(16, 185, 129, 0.01)');
-            charts.provPerCapita = new Chart(ctxCapita, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{ label: 'Per Capita ($USD)', data: perCapitaUSD, borderColor: '#10b981', borderWidth: 3.5, backgroundColor: bgCapita, fill: true, tension: 0.35 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+                if (!charts.provPerCapita) {
+                    const ctx = document.getElementById('provincialPerCapitaChart').getContext('2d');
+                    charts.provPerCapita = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [{ label: 'Per Capita ($USD)', data: perCapitaUSD, borderColor: '#10b981', borderWidth: 3, backgroundColor: 'rgba(16, 185, 129, 0.15)', fill: true, tension: 0.35 }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.provPerCapita.resize(); }
+            }
 
-            // 3. Main Sectors Chart (2021-2030)
-            charts.mainSectors = new Chart(document.getElementById('mainSectorsBarChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: years,
-                    datasets: [
-                        { label: 'កសិកម្ម', data: [344179, 364071, 386134, 408744, 429019, 452100, 476800, 502900, 520100, 537960], backgroundColor: '#10b981', borderRadius: 6 },
-                        { label: 'ឧស្សាហកម្ម', data: [427853, 471988, 536368, 596230, 646219, 715000, 786000, 862000, 940000, 1022124], backgroundColor: '#0284c7', borderRadius: 6 },
-                        { label: 'សេវាកម្ម', data: [650057, 691474, 737468, 784564, 816209, 847290, 892598, 952152, 1030730, 1129716], backgroundColor: '#f59e0b', borderRadius: 6 }
-                    ]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    animation: dynamicChartAnimation,
-                    plugins: { tooltip: khrUsdTooltip }
-                }
-            });
+            if (tabId === 'sectors') {
+                if (!charts.mainSectors) {
+                    const ctx = document.getElementById('mainSectorsBarChart').getContext('2d');
+                    charts.mainSectors = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: years,
+                            datasets: [
+                                { label: 'កសិកម្ម', data: agriData, backgroundColor: '#10b981', borderRadius: 4 },
+                                { label: 'ឧស្សាហកម្ម', data: indData, backgroundColor: '#0284c7', borderRadius: 4 },
+                                { label: 'សេវាកម្ម', data: servData, backgroundColor: '#f59e0b', borderRadius: 4 }
+                            ]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim, plugins: { tooltip: khrUsdTooltip } }
+                    });
+                } else { charts.mainSectors.resize(); }
+            }
 
-            // 4. SubSectors Chart (2030 Projections)
-            charts.subSectors = new Chart(document.getElementById('subSectorsChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['កម្មន្តសាល', 'លក់ដុំ/រាយ', 'សណ្ឋាគារ/អាហារ', 'រុក្ខាកម្ម', 'ដំណាំ', 'ជលផល', 'ចិញ្ចឹមសត្វ', 'សំណង់'],
-                    datasets: [{ label: 'តម្លៃបន្ថែម ព្យាករណ៍២០៣០ (លានរៀល)', data: [890000, 780000, 240000, 180000, 175000, 110000, 105000, 95000], backgroundColor: '#0284c7', borderRadius: 8 }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: dynamicChartAnimation,
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const val = context.parsed.x;
-                                    const usd = toUsdMillions(val);
-                                    return ` តម្លៃបន្ថែម: ${Number(val).toLocaleString()} លានរៀល ($${usd}M)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+            if (tabId === 'subsectors') {
+                if (!charts.subSectors) {
+                    const ctx = document.getElementById('subSectorsChart').getContext('2d');
+                    charts.subSectors = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['កម្មន្តសាល', 'លក់ដុំ/រាយ', 'សណ្ឋាគារ/អាហារ', 'រុក្ខាកម្ម', 'ដំណាំ', 'ជលផល', 'ចិញ្ចឹមសត្វ', 'សំណង់'],
+                            datasets: [{ label: 'តម្លៃបន្ថែម (លានរៀល)', data: [890000, 780000, 240000, 180000, 175000, 110000, 105000, 95000], backgroundColor: '#0284c7', borderRadius: 6 }]
+                        },
+                        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.subSectors.resize(); }
+            }
 
-            // 5. Proportions Donut & Trend (2021-2030)
-            charts.propDonut = new Chart(document.getElementById('proportionsDonutChart').getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['កសិកម្ម ($134.1M)', 'ឧស្សាហកម្ម ($254.8M)', 'សេវាកម្ម ($281.6M)'],
-                    datasets: [{ data: [20.0, 38.0, 42.0], backgroundColor: ['#10b981', '#0284c7', '#f59e0b'], hoverOffset: 14 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: { animateScale: true, animateRotate: true, duration: 800 } }
-            });
+            if (tabId === 'proportions') {
+                if (!charts.propDonut) {
+                    const ctx = document.getElementById('proportionsDonutChart').getContext('2d');
+                    charts.propDonut = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['កសិកម្ម (20%)', 'ឧស្សាហកម្ម (38%)', 'សេវាកម្ម (42%)'],
+                            datasets: [{ data: [20.0, 38.0, 42.0], backgroundColor: ['#10b981', '#0284c7', '#f59e0b'] }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.propDonut.resize(); }
 
-            charts.propTrend = new Chart(document.getElementById('proportionsTrendChart').getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [
-                        { label: 'កសិកម្ម %', data: [24.2, 23.8, 23.2, 22.8, 22.7, 22.0, 21.5, 21.0, 20.5, 20.0], borderColor: '#10b981', borderWidth: 2.5, tension: 0.2 },
-                        { label: 'ឧស្សាហកម្ម %', data: [30.1, 30.9, 32.3, 33.3, 34.2, 35.0, 36.0, 36.8, 37.5, 38.0], borderColor: '#0284c7', borderWidth: 2.5, tension: 0.2 },
-                        { label: 'សេវាកម្ម %', data: [45.7, 45.3, 44.5, 43.9, 43.1, 43.0, 42.5, 42.2, 42.0, 42.0], borderColor: '#f59e0b', borderWidth: 2.5, tension: 0.2 }
-                    ]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+                if (!charts.propTrend) {
+                    const ctx = document.getElementById('proportionsTrendChart').getContext('2d');
+                    charts.propTrend = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [
+                                { label: 'កសិកម្ម %', data: [24.2, 23.8, 23.2, 22.8, 22.7, 22.0, 21.5, 21.0, 20.5, 20.0], borderColor: '#10b981', borderWidth: 2.5 },
+                                { label: 'ឧស្សាហកម្ម %', data: [30.1, 30.9, 32.3, 33.3, 34.2, 35.0, 36.0, 36.8, 37.5, 38.0], borderColor: '#0284c7', borderWidth: 2.5 },
+                                { label: 'សេវាកម្ម %', data: [45.7, 45.3, 44.5, 43.9, 43.1, 43.0, 42.5, 42.2, 42.0, 42.0], borderColor: '#f59e0b', borderWidth: 2.5 }
+                            ]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.propTrend.resize(); }
+            }
 
-            // 6. Inflation Chart (2021-2030)
-            const ctxInflation = document.getElementById('inflationChart').getContext('2d');
-            const bgInflation = getGradient(ctxInflation, 'rgba(245, 158, 11, 0.35)', 'rgba(245, 158, 11, 0.01)');
-            charts.inflation = new Chart(ctxInflation, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{ label: 'អតិផរណា (%)', data: inflationRates, borderColor: '#f59e0b', borderWidth: 3.5, backgroundColor: bgInflation, fill: true, tension: 0.35 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+            if (tabId === 'inflation') {
+                if (!charts.inflation) {
+                    const ctx = document.getElementById('inflationChart').getContext('2d');
+                    charts.inflation = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [{ label: 'អតិផរណា (%)', data: inflationRates, borderColor: '#f59e0b', borderWidth: 3, backgroundColor: 'rgba(245, 158, 11, 0.15)', fill: true, tension: 0.35 }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.inflation.resize(); }
+            }
 
-            // 7. Population Chart (2021-2030)
-            charts.population = new Chart(document.getElementById('populationChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: years,
-                    datasets: [{ label: 'ចំនួនប្រជាជន (នាក់)', data: populationData, backgroundColor: '#6366f1', borderRadius: 8 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+            if (tabId === 'population') {
+                if (!charts.population) {
+                    const ctx = document.getElementById('populationChart').getContext('2d');
+                    charts.population = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: years,
+                            datasets: [{ label: 'ប្រជាជន (នាក់)', data: populationData, backgroundColor: '#6366f1', borderRadius: 6 }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.population.resize(); }
+            }
 
-            // 8. Poverty Rate Chart (2021-2030)
-            const ctxPoverty = document.getElementById('povertyChart').getContext('2d');
-            const bgPoverty = getGradient(ctxPoverty, 'rgba(16, 185, 129, 0.35)', 'rgba(16, 185, 129, 0.01)');
-            charts.poverty = new Chart(ctxPoverty, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{ label: 'អត្រាភាពក្រីក្រ (%)', data: povertyRates, borderColor: '#10b981', borderWidth: 3.5, backgroundColor: bgPoverty, fill: true, tension: 0.35 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, animation: dynamicChartAnimation }
-            });
+            if (tabId === 'poverty') {
+                if (!charts.poverty) {
+                    const ctx = document.getElementById('povertyChart').getContext('2d');
+                    charts.poverty = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [{ label: 'អត្រាភាពក្រីក្រ (%)', data: povertyRates, borderColor: '#10b981', borderWidth: 3, backgroundColor: 'rgba(16, 185, 129, 0.15)', fill: true, tension: 0.35 }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, animation: dynamicAnim }
+                    });
+                } else { charts.poverty.resize(); }
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            initAllCharts();
-            startMetricCounters();
-            triggerTableAnimations();
+            updateMetricCards(2030);
+            renderChartsForTab('home');
         });
     </script>
 </body>
